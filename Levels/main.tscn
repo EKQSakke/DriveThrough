@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://nvnckutn8t12"]
+
+[ext_resource type="PackedScene" uid="uid://c2623gyeha4kc" path="res://Player/player.tscn" id="1_7ugmp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhue1"]
+albedo_color = Color(0.373696, 0.29516, 0.258173, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8mrvh"]
+material = SubResource("StandardMaterial3D_rhue1")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hf370"]
+size = Vector3(100, 0.1, 100)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 10, 6)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999997, -0.00117588, 0.0019697, 0.0011763, 0.999999, -0.000211501, -0.00196945, 0.000213842, 0.999998, 0, 0, 0)
+mesh = SubResource("PlaneMesh_8mrvh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_hf370")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.832063, -0.491196, -0.257677, 0.529647, 0.565591, 0.632125, -0.164757, -0.662445, 0.730767, 0, 6.70083, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_7ugmp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
